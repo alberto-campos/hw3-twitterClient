@@ -10,4 +10,7 @@
 
 @interface TweetCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel *author;
+@property (nonatomic, weak) IBOutlet UILabel *ext_tweet;
+
 @end

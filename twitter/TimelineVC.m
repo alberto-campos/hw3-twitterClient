@@ -43,7 +43,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"Twitter Client";
+        self.title = @"Twitter";
         
         [self reload];
     }
@@ -63,6 +63,10 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UINib *customNib = [UINib nibWithNibName:@"TweetCell" bundle:nil];
+    [self.tableView registerNib:customNib forCellReuseIdentifier:@"TweetCell"];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,20 +87,27 @@
     return self.tweets.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [indexPath row] + 100;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"TweetCell";
    // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    //TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     //TweetCell *cell = (TweetCell *)[tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
     
     //UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    TweetCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+  //  TweetCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     Tweet *tweet = self.tweets[indexPath.row];
-    cell.textLabel.text = tweet.text;
+    //cell.textLabel.text = tweet.text;
+    cell.author.text = [tweet.user valueForKey:@"name"];
     
+    cell.ext_tweet.text = tweet.text;
     return cell;
     
     

@@ -58,10 +58,6 @@
 }
 
 - (void)onError {
-    
-    //NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleSuccess title:@"Sign-in canceled" message:@"Thanks for using our Twitter app." delegate:nil];
-    
-    
     NZAlertView *alert = [[NZAlertView alloc] initWithStyle:NZAlertStyleInfo
                             title:@"Not signed-in"
                             message:@"Thanks for using our Twitter app."
@@ -71,8 +67,6 @@
     [alert setTextAlignment:NSTextAlignmentCenter];
     
     [alert show];
-    
-    
     //[[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"Couldn't log in with Twitter, please try again!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 

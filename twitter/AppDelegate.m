@@ -26,8 +26,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    TimelineVC *tableViewController = [[TimelineVC alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tableViewController];
+    self.window.rootViewController = nvc;
 
-    self.window.rootViewController = self.currentVC;
+ //    self.window.rootViewController = self.currentVC;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRootVC) name:UserDidLoginNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRootVC) name:UserDidLogoutNotification object:nil];
